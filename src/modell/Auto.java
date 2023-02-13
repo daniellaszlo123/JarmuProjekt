@@ -10,7 +10,17 @@ public class Auto extends Jarmu{
         this.defekt = defekt;
     }
     
-    public void kereketCserel(){}
+    public void kereketCserel(){
+        defekt=false;
+    }
     @Override
-    public boolean halad(){return false;}
+    public boolean halad(){
+        while (isBeinditva() && isUzemanyag() && !(isMegerkezett()) && !defekt) {
+            boolean megerkezett = Math.random() > 0.5;
+            setMegerkezett(megerkezett);
+            defekt=Math.random()<0.25;
+        }
+        leallit();
+        return false;
+    }
 }
