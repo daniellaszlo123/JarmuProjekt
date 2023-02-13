@@ -6,10 +6,10 @@ public abstract class Jarmu {
     private boolean uzemanyag;
     private boolean megerkezett;
 
-    public Jarmu(boolean beinditva, boolean uzemanyag, boolean megerkezett) {
-        this.beinditva = beinditva;
-        this.uzemanyag = uzemanyag;
-        this.megerkezett = megerkezett;
+    public Jarmu() {
+        this.beinditva = false;
+        this.uzemanyag = true;
+        this.megerkezett = false;
     }
     
     public void beindit(){
@@ -26,9 +26,10 @@ public abstract class Jarmu {
         return false;
     }
     public boolean halad(){
-        while (beinditva && uzemanyag && !(megerkezett)) {
-            megerkezett = Math.random() > 0.5;
+        if (beinditva && uzemanyag && !(megerkezett)) {
+            return true;
         }
+        uzemanyag=false;
         leallit();
         return false;
     }

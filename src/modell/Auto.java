@@ -5,9 +5,9 @@ package modell;
 public class Auto extends Jarmu{
     private boolean defekt;
 
-    public Auto(boolean defekt) {
-        super(false, true, false);
-        this.defekt = defekt;
+    public Auto() {
+        super();
+        this.defekt = false;
     }
     
     public void kereketCserel(){
@@ -15,12 +15,17 @@ public class Auto extends Jarmu{
     }
     @Override
     public boolean halad(){
-        while (isBeinditva() && isUzemanyag() && !(isMegerkezett()) && !defekt) {
-            boolean megerkezett = Math.random() > 0.5;
-            setMegerkezett(megerkezett);
-            defekt=Math.random()<0.25;
+        defekt=Math.random()<0.25;
+        if (isBeinditva() && isUzemanyag() && !(isMegerkezett()) && !defekt) {
+            return true;
         }
         leallit();
         return false;
     }
+
+    public boolean isDefekt() {
+        return defekt;
+    }
+    
+    
 }
